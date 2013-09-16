@@ -1,8 +1,11 @@
 .PHONY: clean
 
 PREFIX := /usr/local
+LIBDIR := lib
 SRC_FILES := $(shell find src/ -type f)
-DST_FILES := $(patsubst src/%, $(DESTDIR)$(PREFIX)/%, $(SRC_FILES))
+DST_FILES := $(patsubst src/lib/%,\
+               $(DESTDIR)$(PREFIX)/$(LIBDIR)/%,\
+               $(SRC_FILES))
 
 install: $(DST_FILES)
 
