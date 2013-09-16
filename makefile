@@ -1,10 +1,10 @@
 .PHONY: clean
 
 PREFIX := /usr/local
-SRC_MACROS := $(shell find src/ -type f)
-DST_MACROS := $(patsubst src/%, $(DESTDIR)$(PREFIX)/%, $(SRC_MACROS))
+SRC_FILES := $(shell find src/ -type f)
+DST_FILES := $(patsubst src/%, $(DESTDIR)$(PREFIX)/%, $(SRC_FILES))
 
-install: $(DST_MACROS)
+install: $(DST_FILES)
 
 $(DESTDIR)$(PREFIX)/%: src/%
 	install -m644 -D $< $@
@@ -16,7 +16,7 @@ DISTFILE := $(P).tar.xz
 DISTDIR := dist/$(P)
 dist: $(DISTFILE)
 
-$(DISTFILE): LICENSE makefile $(SRC_MACROS)
+$(DISTFILE): LICENSE makefile $(SRC_FILES)
 	mkdir -p $(DISTDIR)
 	cp -a LICENSE makefile src $(DISTDIR)
 	tar -C dist/ -cJf $(DISTFILE) $(P)
