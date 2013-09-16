@@ -7,7 +7,7 @@ DST_MACROS := $(patsubst src/%, $(DESTDIR)$(PREFIX)/%, $(SRC_MACROS))
 install: $(DST_MACROS)
 
 $(DESTDIR)$(PREFIX)/%: src/%
-	install -D $< $@
+	install -m644 -D $< $@
 
 
 NOW := $(shell date +%Y%m%d)
