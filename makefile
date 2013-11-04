@@ -1,4 +1,4 @@
-.PHONY: clean
+.PHONY: clean publish
 
 PREFIX := /usr/local
 LIBDIR := lib
@@ -9,7 +9,7 @@ DST_FILES := $(patsubst src/lib/%,\
 
 install: $(DST_FILES)
 
-$(DESTDIR)$(PREFIX)/%: src/%
+$(DESTDIR)$(PREFIX)/$(LIBDIR)/%: src/lib/%
 	install -m644 -D $< $@
 
 
@@ -23,6 +23,10 @@ $(DISTFILE): LICENSE makefile $(SRC_FILES)
 	mkdir -p $(DISTDIR)
 	cp -a LICENSE makefile src $(DISTDIR)
 	tar -C dist/ -cJf $(DISTFILE) $(P)
+
+
+publish: $(DISTFILE)
+	scp $(DISTFILE) http2.viabit.com:/var/www/viabit.com/www/public/sites/default/files/code/releases/
 
 clean:
 	rm -rf dist
