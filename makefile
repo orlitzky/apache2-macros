@@ -12,9 +12,9 @@ install: $(DST_FILES)
 $(DESTDIR)$(PREFIX)/$(LIBDIR)/%: src/lib/%
 	install -m644 -D $< $@
 
-
+PN := apache2-macros
 NOW := $(shell date +%Y%m%d)
-P := apache2-macros-$(NOW)
+P := $(PN)-$(NOW)
 DISTFILE := $(P).tar.xz
 DISTDIR := dist/$(P)
 dist: $(DISTFILE)
@@ -30,4 +30,4 @@ publish: $(DISTFILE)
 
 clean:
 	rm -rf dist
-	rm -rf $(DISTFILE)
+	rm -rf $(PN)-*.tar.xz
