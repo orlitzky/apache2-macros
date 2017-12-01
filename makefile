@@ -1,7 +1,7 @@
 .PHONY: clean publish
 
 PREFIX := /usr/local
-LIBDIR := lib
+LIBDIR := lib64
 SRC_FILES := $(shell find src/ -type f)
 DST_FILES := $(patsubst src/lib/%,\
                $(DESTDIR)$(PREFIX)/$(LIBDIR)/%,\
